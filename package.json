@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon backend/src/server.js",
+    "start": "node backend/src/server.js",
+    "prisma": "npx prisma"
   },
   "keywords": [],
   "author": "",
@@ -16,5 +19,8 @@
     "express": "^5.1.0",
     "pg": "^8.14.1",
     "prisma": "^6.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
   }
 }
