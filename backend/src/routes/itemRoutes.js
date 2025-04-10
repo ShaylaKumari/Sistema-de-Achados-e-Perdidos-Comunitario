@@ -1,10 +1,18 @@
-  import { Router } from 'express';
+import { Router } from 'express'
+import { getItems, searchItems } from '../controllers/itemController'
 
-  const router = Router();
+const router = Router()
 
-  // Rota de teste
-  router.get('/', (req, res) => {
-    res.send('API de Achados e Perdidos funcionando!');
-  });
+// Rota de teste
+router.get('/', (req, res) => {
+   res.send('API de Achados e Perdidos funcionando!')
+})
 
-  export default router;
+// rota para listar todos os itens
+router.get('/', getItems)
+
+// Buscar itens com filtros
+router.get('/buscar', searchItems)
+
+
+export default router
