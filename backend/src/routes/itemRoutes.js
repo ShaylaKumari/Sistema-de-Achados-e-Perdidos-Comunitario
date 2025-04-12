@@ -15,7 +15,6 @@ router.get('/', getItems)
 router.get('/buscar', searchItems)
 
 // Remover itens pelo ID
-router.delete('/id', deleteItems)
- 
+router.delete('/item/:id', deleteItems) 
 
 export default router
