@@ -4,6 +4,7 @@ import {
   createItem,
   getItems,
   searchItems,
+  updateItems
 } from "../controllers/itemController.js";
 
 const router = Router();
@@ -21,6 +22,10 @@ router.get("/buscar", searchItems);
 
 // Remover itens pelo ID
 router.delete('/item/:id', deleteItems) 
+
+// Atualizar item
+router.put('/item/:code', updateItems)
+
 // Configuração do multer para upload de imagens
 const storage = multer.diskStorage({
   destination: (_req, _file, cb) => cb(null, "uploads/"),

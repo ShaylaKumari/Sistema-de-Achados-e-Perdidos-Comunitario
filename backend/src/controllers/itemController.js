@@ -133,3 +133,34 @@ export const deleteItems = async (req, res) => {
     return res.status(500).json({ error: "Erro ao remover o item." });
   }
 };
+
+// Atualizar item
+export const updateItems = async (req, res) => {
+  const { code } = req.params;
+  const dadosAtualizados = req.body;
+
+  try {
+    // Verifica se o item existe
+    const itemExistente = await prisma.item.findUnique({
+      where: { code }
+    });
+
+    if (!itemExistente) {
+      return res.status(404).json({ erro: 'Item não encontrado.' });
+    }
+
+    // Remove o código dos dados se o usuário tentar enviar
+    delete dadosAtualizados.code;
+
+    // Atualiza o item
+    const itemAtualizado = await prisma.item.update({
+      where: { code },
+      data: dadosAtualizados
+    });
+
+    return res.json(itemAtualizado);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ erro: 'Erro ao atualizar o item.' });
+  }
+};
