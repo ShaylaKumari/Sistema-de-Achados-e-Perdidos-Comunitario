@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { getItems, searchItems } from '../controllers/itemController'
+import { getItems, searchItems, deleteItems} from '../controllers/itemController'
 
 const router = Router()
 
@@ -14,5 +14,7 @@ router.get('/', getItems)
 // Buscar itens com filtros
 router.get('/buscar', searchItems)
 
+// Remover itens pelo ID
+router.delete('/item/:id', deleteItems) 
 
 export default router

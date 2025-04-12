@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon backend/src/server.js",
-    "start": "node backend/src/server.js",
+    "start": "nodemon backend/src/server.js",
     "prisma": "npx prisma"
   },
   "keywords": [],
@@ -17,10 +17,10 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^5.1.0",
-    "pg": "^8.14.1",
-    "prisma": "^6.6.0"
+    "pg": "^8.14.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.9"
+    "nodemon": "^3.1.9",
+    "prisma": "^6.6.0"
   }
 }

@@ -59,3 +59,28 @@ export const searchItems = async (req, res) => {
       res.status(500).json({ error: 'Erro ao buscar os itens.' })
    }
 }
+
+// Remoção de itens
+export const deleteItems = async (req, res) => {
+  
+   const { id } = req.params; // Apagar itens pelo ID
+
+   try{
+      const item = await PrismaClient.itens.delete({
+         where: { id: parseInt(id) },
+      });
+
+      if (isNaN(id)) {
+         return res.status(404).json({ error: 'Item não encontrado.' });
+      }
+
+      // Deleta o item do Banco de Dados
+      await prisma.item.delete({
+         where: { id: parseInt(id) }, // Converte o ID para inteiro
+      });
+
+      res.status(204).json({ message: 'Item removido com sucesso.' });
+   } catch (error) {      
+      res.status(500).json({ error: 'Erro ao remover o item.' });
+   }
+};
