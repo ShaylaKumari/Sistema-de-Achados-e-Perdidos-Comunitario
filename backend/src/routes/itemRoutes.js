@@ -1,20 +1,34 @@
-import { Router } from 'express'
-import { getItems, searchItems, deleteItems} from '../controllers/itemController'
+import { Router } from "express";
+import multer from "multer";
+import {
+  createItem,
+  getItems,
+  searchItems,
+} from "../controllers/itemController.js";
 
-const router = Router()
+const router = Router();
 
 // Rota de teste
-router.get('/', (req, res) => {
-   res.send('API de Achados e Perdidos funcionando!')
-})
+router.get("/", (_req, res) => {
+  res.send("API de Achados e Perdidos funcionando!");
+});
 
 // rota para listar todos os itens
-router.get('/', getItems)
+router.get("/", getItems);
 
 // Buscar itens com filtros
-router.get('/buscar', searchItems)
+router.get("/buscar", searchItems);
 
 // Remover itens pelo ID
 router.delete('/item/:id', deleteItems) 
+// Configuração do multer para upload de imagens
+const storage = multer.diskStorage({
+  destination: (_req, _file, cb) => cb(null, "uploads/"),
+  filename: (_req, file, cb) => cb(null, `${Date.now()}-${file.originalname}`),
+});
 
-export default router
+const upload = multer({ storage });
+
+router.post("/item", upload.single("photo"), createItem);
+
+export default router;
