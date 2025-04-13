@@ -34,7 +34,7 @@ model item {
   category   categoria @relation(fields: [categoryId], references: [id])
   categoryId Int
   date       DateTime  @default(now())
-  loacation  String
+  location   String
   contact    String
   color      String
   photo      String? // opcional

@@ -3297,7 +3297,7 @@ export namespace Prisma {
     name: string | null
     categoryId: number | null
     date: Date | null
-    loacation: string | null
+    location: string | null
     contact: string | null
     color: string | null
     photo: string | null
@@ -3310,7 +3310,7 @@ export namespace Prisma {
     name: string | null
     categoryId: number | null
     date: Date | null
-    loacation: string | null
+    location: string | null
     contact: string | null
     color: string | null
     photo: string | null
@@ -3323,7 +3323,7 @@ export namespace Prisma {
     name: number
     categoryId: number
     date: number
-    loacation: number
+    location: number
     contact: number
     color: number
     photo: number
@@ -3350,7 +3350,7 @@ export namespace Prisma {
     name?: true
     categoryId?: true
     date?: true
-    loacation?: true
+    location?: true
     contact?: true
     color?: true
     photo?: true
@@ -3363,7 +3363,7 @@ export namespace Prisma {
     name?: true
     categoryId?: true
     date?: true
-    loacation?: true
+    location?: true
     contact?: true
     color?: true
     photo?: true
@@ -3376,7 +3376,7 @@ export namespace Prisma {
     name?: true
     categoryId?: true
     date?: true
-    loacation?: true
+    location?: true
     contact?: true
     color?: true
     photo?: true
@@ -3476,7 +3476,7 @@ export namespace Prisma {
     name: string
     categoryId: number
     date: Date
-    loacation: string
+    location: string
     contact: string
     color: string
     photo: string | null
@@ -3508,7 +3508,7 @@ export namespace Prisma {
     name?: boolean
     categoryId?: boolean
     date?: boolean
-    loacation?: boolean
+    location?: boolean
     contact?: boolean
     color?: boolean
     photo?: boolean
@@ -3523,7 +3523,7 @@ export namespace Prisma {
     name?: boolean
     categoryId?: boolean
     date?: boolean
-    loacation?: boolean
+    location?: boolean
     contact?: boolean
     color?: boolean
     photo?: boolean
@@ -3538,7 +3538,7 @@ export namespace Prisma {
     name?: boolean
     categoryId?: boolean
     date?: boolean
-    loacation?: boolean
+    location?: boolean
     contact?: boolean
     color?: boolean
     photo?: boolean
@@ -3553,7 +3553,7 @@ export namespace Prisma {
     name?: boolean
     categoryId?: boolean
     date?: boolean
-    loacation?: boolean
+    location?: boolean
     contact?: boolean
     color?: boolean
     photo?: boolean
@@ -3561,7 +3561,7 @@ export namespace Prisma {
     userId?: boolean
   }
 
-  export type itemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"code" | "name" | "categoryId" | "date" | "loacation" | "contact" | "color" | "photo" | "status" | "userId", ExtArgs["result"]["item"]>
+  export type itemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"code" | "name" | "categoryId" | "date" | "location" | "contact" | "color" | "photo" | "status" | "userId", ExtArgs["result"]["item"]>
   export type itemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | categoriaDefaultArgs<ExtArgs>
     user?: boolean | usuarioDefaultArgs<ExtArgs>
@@ -3586,7 +3586,7 @@ export namespace Prisma {
       name: string
       categoryId: number
       date: Date
-      loacation: string
+      location: string
       contact: string
       color: string
       photo: string | null
@@ -4021,7 +4021,7 @@ export namespace Prisma {
     readonly name: FieldRef<"item", 'String'>
     readonly categoryId: FieldRef<"item", 'Int'>
     readonly date: FieldRef<"item", 'DateTime'>
-    readonly loacation: FieldRef<"item", 'String'>
+    readonly location: FieldRef<"item", 'String'>
     readonly contact: FieldRef<"item", 'String'>
     readonly color: FieldRef<"item", 'String'>
     readonly photo: FieldRef<"item", 'String'>
@@ -4478,7 +4478,7 @@ export namespace Prisma {
     name: 'name',
     categoryId: 'categoryId',
     date: 'date',
-    loacation: 'loacation',
+    location: 'location',
     contact: 'contact',
     color: 'color',
     photo: 'photo',
@@ -4679,7 +4679,7 @@ export namespace Prisma {
     name?: StringFilter<"item"> | string
     categoryId?: IntFilter<"item"> | number
     date?: DateTimeFilter<"item"> | Date | string
-    loacation?: StringFilter<"item"> | string
+    location?: StringFilter<"item"> | string
     contact?: StringFilter<"item"> | string
     color?: StringFilter<"item"> | string
     photo?: StringNullableFilter<"item"> | string | null
@@ -4694,7 +4694,7 @@ export namespace Prisma {
     name?: SortOrder
     categoryId?: SortOrder
     date?: SortOrder
-    loacation?: SortOrder
+    location?: SortOrder
     contact?: SortOrder
     color?: SortOrder
     photo?: SortOrderInput | SortOrder
@@ -4712,7 +4712,7 @@ export namespace Prisma {
     name?: StringFilter<"item"> | string
     categoryId?: IntFilter<"item"> | number
     date?: DateTimeFilter<"item"> | Date | string
-    loacation?: StringFilter<"item"> | string
+    location?: StringFilter<"item"> | string
     contact?: StringFilter<"item"> | string
     color?: StringFilter<"item"> | string
     photo?: StringNullableFilter<"item"> | string | null
@@ -4727,7 +4727,7 @@ export namespace Prisma {
     name?: SortOrder
     categoryId?: SortOrder
     date?: SortOrder
-    loacation?: SortOrder
+    location?: SortOrder
     contact?: SortOrder
     color?: SortOrder
     photo?: SortOrderInput | SortOrder
@@ -4748,7 +4748,7 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"item"> | string
     categoryId?: IntWithAggregatesFilter<"item"> | number
     date?: DateTimeWithAggregatesFilter<"item"> | Date | string
-    loacation?: StringWithAggregatesFilter<"item"> | string
+    location?: StringWithAggregatesFilter<"item"> | string
     contact?: StringWithAggregatesFilter<"item"> | string
     color?: StringWithAggregatesFilter<"item"> | string
     photo?: StringNullableWithAggregatesFilter<"item"> | string | null
@@ -4846,7 +4846,7 @@ export namespace Prisma {
     code: number
     name: string
     date?: Date | string
-    loacation: string
+    location: string
     contact: string
     color: string
     photo?: string | null
@@ -4860,7 +4860,7 @@ export namespace Prisma {
     name: string
     categoryId: number
     date?: Date | string
-    loacation: string
+    location: string
     contact: string
     color: string
     photo?: string | null
@@ -4872,7 +4872,7 @@ export namespace Prisma {
     code?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    loacation?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
     contact?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
     photo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -4886,7 +4886,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     categoryId?: IntFieldUpdateOperationsInput | number
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    loacation?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
     contact?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
     photo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -4899,7 +4899,7 @@ export namespace Prisma {
     name: string
     categoryId: number
     date?: Date | string
-    loacation: string
+    location: string
     contact: string
     color: string
     photo?: string | null
@@ -4911,7 +4911,7 @@ export namespace Prisma {
     code?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    loacation?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
     contact?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
     photo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -4923,7 +4923,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     categoryId?: IntFieldUpdateOperationsInput | number
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    loacation?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
     contact?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
     photo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -5099,7 +5099,7 @@ export namespace Prisma {
     name?: SortOrder
     categoryId?: SortOrder
     date?: SortOrder
-    loacation?: SortOrder
+    location?: SortOrder
     contact?: SortOrder
     color?: SortOrder
     photo?: SortOrder
@@ -5118,7 +5118,7 @@ export namespace Prisma {
     name?: SortOrder
     categoryId?: SortOrder
     date?: SortOrder
-    loacation?: SortOrder
+    location?: SortOrder
     contact?: SortOrder
     color?: SortOrder
     photo?: SortOrder
@@ -5131,7 +5131,7 @@ export namespace Prisma {
     name?: SortOrder
     categoryId?: SortOrder
     date?: SortOrder
-    loacation?: SortOrder
+    location?: SortOrder
     contact?: SortOrder
     color?: SortOrder
     photo?: SortOrder
@@ -5449,7 +5449,7 @@ export namespace Prisma {
     code: number
     name: string
     date?: Date | string
-    loacation: string
+    location: string
     contact: string
     color: string
     photo?: string | null
@@ -5462,7 +5462,7 @@ export namespace Prisma {
     name: string
     categoryId: number
     date?: Date | string
-    loacation: string
+    location: string
     contact: string
     color: string
     photo?: string | null
@@ -5503,7 +5503,7 @@ export namespace Prisma {
     name?: StringFilter<"item"> | string
     categoryId?: IntFilter<"item"> | number
     date?: DateTimeFilter<"item"> | Date | string
-    loacation?: StringFilter<"item"> | string
+    location?: StringFilter<"item"> | string
     contact?: StringFilter<"item"> | string
     color?: StringFilter<"item"> | string
     photo?: StringNullableFilter<"item"> | string | null
@@ -5515,7 +5515,7 @@ export namespace Prisma {
     code: number
     name: string
     date?: Date | string
-    loacation: string
+    location: string
     contact: string
     color: string
     photo?: string | null
@@ -5527,7 +5527,7 @@ export namespace Prisma {
     code: number
     name: string
     date?: Date | string
-    loacation: string
+    location: string
     contact: string
     color: string
     photo?: string | null
@@ -5642,7 +5642,7 @@ export namespace Prisma {
     name: string
     categoryId: number
     date?: Date | string
-    loacation: string
+    location: string
     contact: string
     color: string
     photo?: string | null
@@ -5653,7 +5653,7 @@ export namespace Prisma {
     code?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    loacation?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
     contact?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
     photo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -5666,7 +5666,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     categoryId?: IntFieldUpdateOperationsInput | number
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    loacation?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
     contact?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
     photo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -5678,7 +5678,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     categoryId?: IntFieldUpdateOperationsInput | number
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    loacation?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
     contact?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
     photo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -5689,7 +5689,7 @@ export namespace Prisma {
     code: number
     name: string
     date?: Date | string
-    loacation: string
+    location: string
     contact: string
     color: string
     photo?: string | null
@@ -5701,7 +5701,7 @@ export namespace Prisma {
     code?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    loacation?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
     contact?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
     photo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -5713,7 +5713,7 @@ export namespace Prisma {
     code?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    loacation?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
     contact?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
     photo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -5725,7 +5725,7 @@ export namespace Prisma {
     code?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
-    loacation?: StringFieldUpdateOperationsInput | string
+    location?: StringFieldUpdateOperationsInput | string
     contact?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
     photo?: NullableStringFieldUpdateOperationsInput | string | null

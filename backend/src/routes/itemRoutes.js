@@ -4,7 +4,8 @@ import {
   createItem,
   getItems,
   searchItems,
-  updateItems
+  updateItems,
+  deleteItems
 } from "../controllers/itemController.js";
 
 const router = Router();

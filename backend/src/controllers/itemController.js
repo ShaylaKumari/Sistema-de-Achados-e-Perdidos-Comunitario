@@ -78,7 +78,7 @@ export const createItem = async (req, res) => {
         .json({ error: error.details.map((d) => d.message) });
     }
 
-    const { name, category, date, location, contact, color, status } = value;
+    const { name, category, date, location, contact, color, status, user } = value;
     const photo = req.file ? req.file.path : null;
 
     const code = uuidv4();
@@ -94,6 +94,7 @@ export const createItem = async (req, res) => {
         color,
         photo,
         status,
+        user
       },
     });
 
