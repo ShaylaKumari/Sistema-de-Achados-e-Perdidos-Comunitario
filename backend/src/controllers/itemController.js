@@ -106,16 +106,16 @@ export const createItem = async (req, res) => {
 
 // Remover um item
 export const deleteItems = async (req, res) => {
-  const { id } = req.params;
+  const { code } = req.params;
 
-  if (isNaN(id)) {
+  if (isNaN(code)) {
     return res.status(400).json({ error: "ID inválido." });
   }
 
   try {
     // Verifica se o item existe
     const item = await prisma.item.findUnique({
-      where: { id: parseInt(id) },
+      where: { code: parseInt(code) },
     });
 
     if (!item) {
@@ -124,7 +124,7 @@ export const deleteItems = async (req, res) => {
 
     // Deleta o item
     await prisma.item.delete({
-      where: { id: parseInt(id) },
+      where: { code: parseInt(code) },
     });
 
     return res.status(204).json({ message: "Item removido com sucesso." });
