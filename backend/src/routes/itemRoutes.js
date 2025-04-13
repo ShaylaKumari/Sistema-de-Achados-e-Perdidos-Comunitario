@@ -22,7 +22,7 @@ router.get("/", getItems);
 router.get("/buscar", searchItems);
 
 // Remover itens pelo ID
-router.delete('/item/:id', deleteItems) 
+router.delete('/item/:code', deleteItems) 
 
 // Atualizar item
 router.put('/item/:code', updateItems)
