@@ -117,18 +117,29 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.ItemScalarFieldEnum = {
+exports.Prisma.UsuarioScalarFieldEnum = {
   id: 'id',
-  code: 'code',
-  name: 'name',
-  category: 'category',
+  nome: 'nome',
+  telefone: 'telefone',
+  email: 'email'
+};
+
+exports.Prisma.CategoriaScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome'
+};
+
+exports.Prisma.ItemScalarFieldEnum = {
+  codigo: 'codigo',
+  nome: 'nome',
+  categoriaId: 'categoriaId',
   date: 'date',
-  location: 'location',
-  contact: 'contact',
-  color: 'color',
-  photo: 'photo',
+  localizacao: 'localizacao',
+  contato: 'contato',
+  cor: 'cor',
+  foto: 'foto',
   status: 'status',
-  createdAt: 'createdAt'
+  usuarioId: 'usuarioId'
 };
 
 exports.Prisma.SortOrder = {
@@ -148,6 +159,8 @@ exports.Prisma.NullsOrder = {
 
 
 exports.Prisma.ModelName = {
+  Usuario: 'Usuario',
+  Categoria: 'Categoria',
   Item: 'Item'
 };
 
