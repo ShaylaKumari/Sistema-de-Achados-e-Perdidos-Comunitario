@@ -124,7 +124,7 @@ export const deleteItems = async (req, res) => {
 
     // Deleta o item
     await prisma.item.delete({
-      where: { id: parseInt(id) },
+      where: { code: parseInt(code) },
     });
 
     return res.status(204).json({ message: "Item removido com sucesso." });
