@@ -14,7 +14,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Usuario{
+model user{
   id    Int     @id @default(autoincrement())
   nome  String
   telefone   String
@@ -22,25 +22,25 @@ model Usuario{
   itens Item[]
 }
 
-model Categoria {
+model category {
   id    Int     @id @default(autoincrement())
   nome  String
   itens Item[]
 }
 
-model Item {
-  codigo       String    @id
-  nome         String
-  categoria    Categoria @relation(fields: [categoriaId], references: [id])
-  categoriaId  Int
+model item {
+  code       String    @id
+  name         String
+  category    category @relation(fields: [categoryId], references: [id])
+  categoryId  Int
   date         DateTime  @default(now())
-  localizacao  String
-  contato      String
-  cor          String
-  foto         String?   // opcional
+  location  String
+  contact      String
+  color          String
+  photo         String?   // opcional
   status       String    // "Perdido" ou "Encontrado"
-  usuario      Usuario   @relation(fields: [usuarioId], references: [id])
-  usuarioId    Int
+  user      user   @relation(fields: [userd], references: [id])
+  userId    Int
 }
 
 
