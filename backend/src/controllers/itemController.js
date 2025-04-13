@@ -142,7 +142,7 @@ export const updateItems = async (req, res) => {
   try {
     // Verifica se o item existe
     const itemExistente = await prisma.item.findUnique({
-      where: { codigo }
+      where: { code }
     });
 
     if (!itemExistente) {
