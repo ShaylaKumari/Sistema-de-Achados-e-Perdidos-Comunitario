@@ -10,6 +10,14 @@ Por meio de uma interface intuitiva, os usuários poderão cadastrar descriçõe
 
 ## ✨ Funcionalidades
 
+* **Cadastro de Usuários**:
+   * Primeiramente cadastre o usuário;
+   * Nome, Telefone e E-mail
+     
+ * **Cadastro de Usuários**:
+   * Após isso cadastre uma Categoria do para o Item
+   * Nome da Categoria   
+     
 * **Cadastro de itens**:
    * Descrição, categoria, data, localização e contato
    * Upload de foto (opcional)
