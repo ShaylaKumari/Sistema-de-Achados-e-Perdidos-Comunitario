@@ -4843,7 +4843,6 @@ export namespace Prisma {
   }
 
   export type itemCreateInput = {
-    code: number
     name: string
     date?: Date | string
     location: string
@@ -4856,7 +4855,7 @@ export namespace Prisma {
   }
 
   export type itemUncheckedCreateInput = {
-    code: number
+    code?: number
     name: string
     categoryId: number
     date?: Date | string
@@ -4869,7 +4868,6 @@ export namespace Prisma {
   }
 
   export type itemUpdateInput = {
-    code?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     location?: StringFieldUpdateOperationsInput | string
@@ -4895,7 +4893,7 @@ export namespace Prisma {
   }
 
   export type itemCreateManyInput = {
-    code: number
+    code?: number
     name: string
     categoryId: number
     date?: Date | string
@@ -4908,7 +4906,6 @@ export namespace Prisma {
   }
 
   export type itemUpdateManyMutationInput = {
-    code?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     location?: StringFieldUpdateOperationsInput | string
@@ -5446,7 +5443,6 @@ export namespace Prisma {
   }
 
   export type itemCreateWithoutUserInput = {
-    code: number
     name: string
     date?: Date | string
     location: string
@@ -5458,7 +5454,7 @@ export namespace Prisma {
   }
 
   export type itemUncheckedCreateWithoutUserInput = {
-    code: number
+    code?: number
     name: string
     categoryId: number
     date?: Date | string
@@ -5512,7 +5508,6 @@ export namespace Prisma {
   }
 
   export type itemCreateWithoutCategoryInput = {
-    code: number
     name: string
     date?: Date | string
     location: string
@@ -5524,7 +5519,7 @@ export namespace Prisma {
   }
 
   export type itemUncheckedCreateWithoutCategoryInput = {
-    code: number
+    code?: number
     name: string
     date?: Date | string
     location: string
@@ -5638,7 +5633,7 @@ export namespace Prisma {
   }
 
   export type itemCreateManyUserInput = {
-    code: number
+    code?: number
     name: string
     categoryId: number
     date?: Date | string
@@ -5650,7 +5645,6 @@ export namespace Prisma {
   }
 
   export type itemUpdateWithoutUserInput = {
-    code?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     location?: StringFieldUpdateOperationsInput | string
@@ -5686,7 +5680,7 @@ export namespace Prisma {
   }
 
   export type itemCreateManyCategoryInput = {
-    code: number
+    code?: number
     name: string
     date?: Date | string
     location: string
@@ -5698,7 +5692,6 @@ export namespace Prisma {
   }
 
   export type itemUpdateWithoutCategoryInput = {
-    code?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     location?: StringFieldUpdateOperationsInput | string

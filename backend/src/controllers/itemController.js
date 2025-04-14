@@ -1,44 +1,41 @@
+import { PrismaClient } from "../generated/prisma/client.js";
 import { v4 as uuidv4 } from "uuid";
-//import { PrismaClient } from "@prisma/client";
-/* 
-   verificar o import do PrismaClient, aqui no 
-   meu eu só consigo usar se for com a importação de baixo
-   se caso no seu não funcionar use a importação de cima 
-*/
-import { PrismaClient } from "../generated/prisma/client.js  ";
-import { itemSchema } from "../validators/itemSchema.js";
 const prisma = new PrismaClient();
 
 // listar todos os itens
-export const getItems = async (_req, res) => {
+export const getItems = async (req, res) => {
   try {
     const itens = await prisma.item.findMany({
-      include: { categoria: true, usuario: true },
+      include: {
+        category: true, // Inclui os dados da categoria relacionada
+        user: true,     // Inclui os dados do usuário relacionado
+      },
     });
-    res.json(itens);
+
+    return res.status(200).json(itens);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Erro ao listar os itens" });
+    console.error("Erro ao listar os itens:", error);
+    return res.status(500).json({ error: "Erro ao listar os itens" });
   }
 };
 
 // Buscar itens com filtros
 export const searchItems = async (req, res) => {
-  const { categoria, localizacao, status } = req.query;
+  const { category, location, status } = req.query;
 
   try {
     // Construir o filtro dinamicamente com base nos parâmetros recebidos
     const filtro = {};
 
-    if (categoria) {
+    if (category) {
       filtro.categoria = {
-        nome_categoria: categoria.toLowerCase(), // Normalizar o nome da categoria
+        nome_categoria: category.toLowerCase(), // Normalizar o nome da categoria
       };
     }
 
-    if (localizacao) {
-      filtro.localizacao = {
-        contains: localizacao, // Busca parcial (case-insensitive)
+    if (location) {
+      filtro.location = {
+        contains: location, // Busca parcial (case-insensitive)
         mode: "insensitive", // Ignorar maiúsculas/minúsculas
       };
     }
@@ -55,7 +52,7 @@ export const searchItems = async (req, res) => {
     // Buscar itens com base no filtro
     const itens = await prisma.item.findMany({
       where: filtro,
-      include: { categoria: true, usuario: true }, // Incluir relacionamentos
+      include: { category: true, user: true }, // Use os nomes corretos dos relacionamentos
     });
 
     res.json(itens);
@@ -70,31 +67,40 @@ export const searchItems = async (req, res) => {
 // Criar um novo item
 export const createItem = async (req, res) => {
   try {
-    const { error, value } = itemSchema.validate(req.body);
+    const { name, categoryId, date, location, contact, color, status, userId } = req.body;
+    const photo = req.file ? req.file.path : null;
+    const code = Math.floor(Math.random() * 1000000); // Gera um número inteiro aleatório
 
-    if (error) {
-      return res
-        .status(400)
-        .json({ error: error.details.map((d) => d.message) });
+    // Verifique se a categoria e o usuário existem
+    const categoriaExistente = await prisma.categoria.findUnique({
+      where: { id: categoryId },
+    });
+
+    if (!categoriaExistente) {
+      return res.status(404).json({ error: "Categoria não encontrada." });
     }
 
-    const { name, category, date, location, contact, color, status, user } = value;
-    const photo = req.file ? req.file.path : null;
+    const usuarioExistente = await prisma.usuario.findUnique({
+      where: { id: userId },
+    });
 
-    const code = uuidv4();
+    if (!usuarioExistente) {
+      return res.status(404).json({ error: "Usuário não encontrado." });
+    }
 
+    // Crie o item
     const newItem = await prisma.item.create({
       data: {
         code,
         name,
-        category,
-        date: new Date(date),
+        categoryId,
+        date: date ? new Date(date) : undefined,
         location,
         contact,
         color,
         photo,
         status,
-        user
+        userId,
       },
     });
 
@@ -141,13 +147,16 @@ export const updateItems = async (req, res) => {
   const dadosAtualizados = req.body;
 
   try {
+    // Converta o code para inteiro
+    const codeInt = parseInt(code);
+
     // Verifica se o item existe
     const itemExistente = await prisma.item.findUnique({
-      where: { code }
+      where: { code: codeInt },
     });
 
     if (!itemExistente) {
-      return res.status(404).json({ erro: 'Item não encontrado.' });
+      return res.status(404).json({ erro: "Item não encontrado." });
     }
 
     // Remove o código dos dados se o usuário tentar enviar
@@ -155,13 +164,13 @@ export const updateItems = async (req, res) => {
 
     // Atualiza o item
     const itemAtualizado = await prisma.item.update({
-      where: { code },
-      data: dadosAtualizados
+      where: { code: codeInt },
+      data: dadosAtualizados,
     });
 
     return res.json(itemAtualizado);
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ erro: 'Erro ao atualizar o item.' });
+    return res.status(500).json({ erro: "Erro ao atualizar o item." });
   }
 };

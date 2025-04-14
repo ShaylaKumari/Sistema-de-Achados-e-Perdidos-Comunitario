@@ -11,7 +11,7 @@ import {
 const router = Router();
 
 // Rota de teste
-router.get("/", (_req, res) => {
+router.get("/teste", (_req, res) => {
   res.send("API de Achados e Perdidos funcionando!");
 });
 
@@ -22,10 +22,10 @@ router.get("/", getItems);
 router.get("/buscar", searchItems);
 
 // Remover itens pelo ID
-router.delete('/item/:id', deleteItems) 
+router.delete("/:code", deleteItems) 
 
 // Atualizar item
-router.put('/item/:code', updateItems)
+router.put("/:code", updateItems)
 
 // Configuração do multer para upload de imagens
 const storage = multer.diskStorage({
@@ -35,6 +35,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-router.post("/item", upload.single("photo"), createItem);
+router.post("/", upload.single("photo"), createItem);
 
 export default router;
