@@ -91,7 +91,7 @@ Este projeto adota um fluxo de trabalho baseado em branches específicas por fun
 | Membro           | Responsabilidade                    | Branch               |
 |------------------|-------------------------------------|----------------------|
 | Ananda Shayla    | Gerente de Projeto e Repositório    | `gerente-projeto`    |
-| Rafael Feitosa   | Modelagem do Banco de Dados         | `modelagem-banco`    |
+| Carlos Eduardo   | Modelagem do Banco de Dados         | `modelagem-banco`    |
 | Juliana Andrade  | Configuração do Projeto             | `setup-projeto`      |
 | Carlos Eduardo   | Rota de Cadastro de Itens           | `cadastro-itens`     |
 | Emily Rizo       | Rota de Listagem com Filtros        | `listagem-itens`     |
@@ -141,4 +141,3 @@ Equipe de desenvolvimento:
 * Helen Santos - [GitHub](https://github.com/sunHelen12)
 * Juliana Andrade - [GitHub](https://github.com/andradeju)
 * Murilo Gomes - [GitHub](https://github.com/murilogomesl)
-* Rafael Feitosa - [GitHub](https://github.com/rafaelfeitosax)
