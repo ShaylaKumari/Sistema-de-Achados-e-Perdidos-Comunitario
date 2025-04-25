@@ -15,18 +15,10 @@ router.get("/teste", (_req, res) => {
   res.send("API de Achados e Perdidos funcionando!");
 });
 
-// rota para listar todos os itens
-router.get("/", getItems);
-
-// Buscar itens com filtros
-router.get("/buscar", searchItems);
-
-// Remover itens pelo ID
-router.delete("/:code", deleteItems) 
-
-
-// Atualizar item
-router.put("/:code", updateItems)
+router.get("/", getItems); // Listar todos os itens
+router.get("/buscar", searchItems);  // Buscar itens com filtros
+router.delete("/:code", deleteItems); // Remover itens pelo ID
+router.put("/:code", updateItems) // Atualizar itens 
 
 // Configuração do multer para upload de imagens
 const storage = multer.diskStorage({

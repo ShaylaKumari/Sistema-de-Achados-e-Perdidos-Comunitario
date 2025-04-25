@@ -1,86 +1,117 @@
 import { PrismaClient } from "../generated/prisma/client.js";
 const prisma = new PrismaClient();
 
-export const getUsers = async (_req, res) => {
-  try {
-    const usuarios = await prisma.usuario.findMany({
-      include: { itens: true }, // Inclui os itens relacionados ao usuário
-    });
-    res.json(usuarios);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Erro ao listar os usuários." });
-  }
-};
+import { prisma } from "../database/PrismaClient.js";
 
-// Buscar um usuário por ID
-export const getUserById = async (req, res) => {
-  const { id } = req.params;
+export const findAllUsers = async (req, res) => {
+  const { id } = req.query;
 
   try {
-    const usuario = await prisma.usuario.findUnique({
-      where: { id: parseInt(id) },
-      include: { itens: true }, // Inclui os itens relacionados ao usuário
-    });
+    if (id) {
+      const userId = parseInt(id);
 
-    if (!usuario) {
-      return res.status(404).json({ error: "Usuário não encontrado." });
+      if (isNaN(userId)) {
+        return res.status(400).json({ error: "ID inválido." });
+      }
+
+      const user = await prisma.usuario.findUnique({
+        where: { id: userId },
+        select: {
+          id: true,
+          name: true,
+          phone: true,
+          email: true,
+          isAdmin: true,
+        },
+      });
+
+      if (!user) {
+        return res.status(404).json({ message: "Usuário não encontrado." });
+      }
+
+      return res.status(200).json(user);
     }
+   
+    const users = await prisma.usuario.findMany({
+      select: {
+        id: true,
+        name: true,
+        phone: true,
+        email: true,
+        isAdmin: true,
+      },
+    });
 
-    res.json(usuario);
+    return res.status(200).json(users);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Erro ao buscar o usuário." });
+    console.error("Erro ao buscar usuários:", error);
+    return res.status(500).json({ error: "Erro ao buscar usuários." });
   }
 };
 
 // Criar um novo usuário
 export const createUser = async (req, res) => {
-  const { name, phone, email } = req.body;
+  const { name, phone, email, isAdmin = false, password } = req.body;
 
-  try {
-    const newUser = await prisma.usuario.create({
+  try {   
+    const userCheck = await prisma.usuario.findUnique({
+      where: { email },
+    });
+
+    if (userCheck) {
+      return res.status(409).json({ error: "E-mail já cadastrado!" });
+    }
+    
+    const passwordHash = await bcrypt.hash(password, 10);
+   
+    const user = await prisma.usuario.create({
       data: {
         name,
         phone,
         email,
+        isAdmin: Boolean(isAdmin),
+        password: passwordHash,
+      },
+      select: {
+        id: true,
+        name: true,
+        phone: true,
+        email: true,
+        isAdmin: true,
       },
     });
 
-    res.status(201).json(newUser);
+    return res.status(201).json(user);
+
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Erro ao criar o usuário." });
+    console.error("Erro ao criar usuário:", error);
+    return res.status(500).json({ error: "Erro ao criar o usuário." });
   }
 };
 
 // Atualizar um usuário
 export const updateUser = async (req, res) => {
+  const { name, email, phone, isAdmin, password } = req.body;
   const { id } = req.params;
-  const { name, phone, email } = req.body;
 
   try {
-    const usuarioExistente = await prisma.usuario.findUnique({
-      where: { id: parseInt(id) },
+    const dataToUpdate = {};
+
+    if (name) dataToUpdate.name = name;
+    if (email) dataToUpdate.email = email;
+    if (phone) dataToUpdate.phone = phone;
+    if (typeof isAdmin === "boolean") dataToUpdate.isAdmin = isAdmin;
+    if (password) dataToUpdate.password = bcrypt.hashSync(password, 10);
+
+    const user = await prisma.usuario.update({
+      where: { id: Number(id) }, // Garantir que é número, porque o params é string
+      data: dataToUpdate,
     });
 
-    if (!usuarioExistente) {
-      return res.status(404).json({ error: "Usuário não encontrado." });
-    }
-
-    const usuarioAtualizado = await prisma.usuario.update({
-      where: { id: parseInt(id) },
-      data: {
-        name,
-        phone,
-        email,
-      },
-    });
-
-    res.json(usuarioAtualizado);
+    return res.status(200).json(user);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Erro ao atualizar o usuário." });
+    return res.status(500).json({ error: "Erro ao atualizar o usuário." });
   }
 };
 
@@ -89,21 +120,66 @@ export const deleteUser = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const usuarioExistente = await prisma.usuario.findUnique({
-      where: { id: parseInt(id) },
+    const userId = parseInt(id);
+
+    if (isNaN(userId)) {
+      return res.status(400).json({ error: "ID inválido." });
+    }
+
+    const user = await prisma.usuario.findUnique({
+      where: { id: userId },
     });
 
-    if (!usuarioExistente) {
+    if (!user) {
       return res.status(404).json({ error: "Usuário não encontrado." });
     }
 
     await prisma.usuario.delete({
-      where: { id: parseInt(id) },
+      where: { id: userId },
     });
 
-    res.status(204).json({ message: "Usuário removido com sucesso." });
+    return res.status(200).json({ message: "Usuário removido com sucesso." });
+
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Erro ao remover o usuário." });
+    console.error("Erro ao remover o usuário:", error);
+    return res.status(500).json({ error: "Erro ao remover o usuário." });
+  }
+};
+
+export const findUserAndItems = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const user = await prisma.usuario.findUnique({
+      where: {
+        id: parseInt(id),
+      },
+      include: {
+        itens: {
+          select: {
+            code: true,
+            name: true,
+            date: true,
+            location: true,
+            contact: true,
+            color: true,
+            status: true,
+            photo: true,
+          },
+          orderBy: {
+            date: 'asc',
+          },
+        },
+      },
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: "Usuário não encontrado." });
+    }
+
+    return res.status(200).json(user);
+  } catch (error) {
+    console.error("Erro ao buscar usuário e itens:", error);
+    return res.status(500).json({ message: "Erro interno do servidor." });
   }
 };

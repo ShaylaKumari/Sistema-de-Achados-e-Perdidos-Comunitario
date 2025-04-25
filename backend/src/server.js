@@ -8,7 +8,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json()); // Middleware para processar JSON
-app.use("/api/v1/", routes);
+app.use("/items", routes);
 app.use("/users", userRoutes); // Define o prefixo "/users" para as rotas de usuários
 app.use("/categories", categoriaRoutes); // Define o prefixo "/categories" para as rotas de categorias
 
