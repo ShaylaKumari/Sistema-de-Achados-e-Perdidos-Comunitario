@@ -2,21 +2,13 @@
 
 ## 📝Descrição do Projeto
  
-Objetos pessoais são frequentemente esquecidos ou perdidos em locais públicos como escolas, parques, bibliotecas e centros comunitários. A ausência de um sistema eficiente para gerenciar esses itens dificulta sua devolução aos respectivos proprietários.
+Objetos pessoais são frequentemente esquecidos ou perdidos em locais públicos como escolas, parques, bibliotecas e centros comunitários. A falta de um sistema eficiente para gerenciar esses itens dificulta sua devolução aos respectivos donos.
 
 Este projeto tem como objetivo desenvolver uma aplicação web simples e funcional que permita o registro e a consulta de itens perdidos e encontrados. A plataforma visa facilitar a comunicação entre quem perdeu e quem encontrou objetos, promovendo uma solução acessível e colaborativa para situações do cotidiano.
 
 Por meio de uma interface intuitiva, os usuários poderão cadastrar descrições de objetos encontrados ou realizar buscas por itens perdidos, contribuindo para uma maior taxa de recuperação e devolução desses pertences.
 
 ## ✨ Funcionalidades
-
-* **Cadastro de Usuários**:
-   * Primeiramente cadastre o usuário;
-   * Nome, Telefone e E-mail
-     
- * **Cadastro de Usuários**:
-   * Após isso cadastre uma Categoria para o Item
-   * Nome da Categoria   
      
 * **Cadastro de itens**:
    * Descrição, categoria, data, localização e contato
@@ -36,12 +28,14 @@ Por meio de uma interface intuitiva, os usuários poderão cadastrar descriçõe
 ### Backend
  * **Node.js** com **Express.js**: Gerenciamento de rotas e estrutura da API REST
  * **Prisma ORM**: Manipulação e modelagem do banco de dados
- * **PostgreSQL**: Sistema Gerenciador de banco de dados relacional
+ * **PostgreSQL**: Sistema de gerenciamento de banco de dados relacional
 
 🔹 O backend fornece uma API REST com suporte completo a operações **CRUD**.
 
 ### Frontend
- * Inserir posteriormente
+ * **React.js** com **Vite**: Interface leve e responsiva
+ * **Tailwind CSS**: Estilização moderna e utilitária
+ * **Axios**: Comunicação com a API backend
 
 ## 🚀 Como Executar o Projeto
 
@@ -82,21 +76,24 @@ npx prisma migrate dev
 npm run dev
 ```
 
+### Acesse a pasta do frontend
+```bash
+cd ../frontend
+```
+
+### Instale as dependências
+```bash
+npm install
+```
+
+### Inicie a aplicação
+```bash
+npm run dev
+```
+
 ## 📌 Fluxo de Trabalho com Branches
 
 Este projeto adota um fluxo de trabalho baseado em branches específicas por função. A branch `main` está protegida e não aceita push direto, garantindo que todo o código passe por revisão antes de ser integrado.
-
-### 👥 Estrutura de Branches
-
-| Membro           | Responsabilidade                    | Branch               |
-|------------------|-------------------------------------|----------------------|
-| Ananda Shayla    | Gerente de Projeto e Repositório    | `gerente-projeto`    |
-| Carlos Eduardo   | Modelagem do Banco de Dados         | `modelagem-banco`    |
-| Juliana Andrade  | Configuração do Projeto             | `setup-projeto`      |
-| Carlos Eduardo   | Rota de Cadastro de Itens           | `cadastro-itens`     |
-| Emily Rizo       | Rota de Listagem com Filtros        | `listagem-itens`     |
-| Murilo Gomes     | Rota de Atualização de Itens        | `atualizacao-itens`  |
-| Helen Santos     | Rota de Remoção de Itens            | `remocao-itens`      |
 
 ### 👨‍💻 Processo de Contribuição
 
@@ -119,11 +116,11 @@ Siga os passos abaixo para garantir uma colaboração organizada e sem conflitos
 
  4. **Adicione, faça commit das mudanças e envie suas alterações**
 
-   ```bash
-   git add .
-   git commit -m "breve descrição da funcionalidade"
-   git push origin nome-da-sua-branch
-   ```
+    ```bash
+    git add .
+    git commit -m "breve descrição da funcionalidade"
+    git push origin nome-da-sua-branch
+    ```
 
  5. **Crie um Pull Request no GitHub para branch `main`**
 
