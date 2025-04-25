@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { fetchItems } from '../services/api';
-import ItemTable from '../components/ItemTable';
 import SearchFilter from '../components/SearchFilter';
+import ItemTable from '../components/ItemTable';
 
 export default function ItemList() {
   const [items, setItems] = useState([]);
   const [filters, setFilters] = useState({});
 
   useEffect(() => {
-    load();
+    const { keyword, ...apiFilters } = filters;
+    fetchItems(apiFilters).then(res => {
+      let data = res.data;
+      if (keyword) data = data.filter(i => i.name.toLowerCase().includes(keyword.toLowerCase()));
+      setItems(data);
+    });
   }, [filters]);
-
-  const load = () => fetchItems(filters).then(res => setItems(res.data));
 
   return (
     <div>
